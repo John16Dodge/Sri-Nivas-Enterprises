@@ -11,7 +11,36 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Sans:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&display=swap">
-<style>html,body{margin:0;background:#fffdf7}</style>
+<style>html,body{margin:0;background:#fffdf7}
+    <style>
+.addr{max-width:1080px;margin:0 auto;padding:0 20px 20px}
+.addr p{margin:0 0 4px;font-weight:600;color:#0a1a52}
+</style>
+<script>
+(function(){
+  var T={
+    en:["📍 Villupuram, Tamil Nadu, India","No 437 Devanatha Swamy Nagar, East Pondy Road, VPM"],
+    ta:["📍 விழுப்புரம், தமிழ்நாடு, இந்தியா","எண் 437, தேவநாத சுவாமி நகர், கிழக்கு பாண்டி சாலை, விழுப்புரம்"]
+  };
+  function put(){
+    var s=document.querySelector("#contact .callsec");
+    if(!s) return;
+    var d=document.getElementById("addr-block");
+    if(!d){
+      d=document.createElement("div");
+      d.id="addr-block";
+      d.className="addr";
+      s.parentNode.insertBefore(d,s.nextSibling);
+    }
+    var t=T[document.documentElement.lang==="ta"?"ta":"en"];
+    var h="<p>"+t[0]+"</p><p>"+t[1]+"</p>";
+    if(d.innerHTML!==h) d.innerHTML=h;
+  }
+  new MutationObserver(put).observe(document.getElementById("root"),{childList:true,subtree:true});
+  new MutationObserver(put).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+  put();
+})();
+</script></style>
 </head>
 <body>
 <div id="root"></div>
